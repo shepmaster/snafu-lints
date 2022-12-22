@@ -1,0 +1,75 @@
+error: Context selector field expressions should avoid function calls when used with `context` as the function calls will be invoked even when no error is created
+  --> $DIR/main.rs:21:39
+   |
+LL |     let _ = r().context(Snafu { name: make_name() });
+   |                                       ^^^^^^^^^^^
+   |
+   = note: `-D snafu-context-fun-call` implied by `-D warnings`
+   = help: Replace `context` with `with_context` or replace the function call with an existing value. Context selectors will automatically call `Into::into` on the field expression as needed, so an explicit function call can often be avoided.
+
+error: Context selector field expressions should avoid method calls when used with `context` as the method calls will be invoked even when no error is created
+  --> $DIR/main.rs:28:15
+   |
+LL |         name: name.to_string(),
+   |               ^^^^^^^^^^^^^^^^
+   |
+   = help: Replace `context` with `with_context` or replace the method call with an existing value. Context selectors will automatically call `Into::into` on the field expression as needed, so an explicit method call can often be avoided.
+
+error: Context selector field expressions should avoid function calls when used with `context` as the function calls will be invoked even when no error is created
+  --> $DIR/main.rs:35:39
+   |
+LL |     let _ = r().context(Snafu { name: make_name() });
+   |                                       ^^^^^^^^^^^
+   |
+   = help: Replace `context` with `with_context` or replace the function call with an existing value. Context selectors will automatically call `Into::into` on the field expression as needed, so an explicit function call can often be avoided.
+
+error: Context selector field expressions should avoid method calls when used with `context` as the method calls will be invoked even when no error is created
+  --> $DIR/main.rs:41:21
+   |
+LL |         name: ({ ({ "hi".to_string() }) }),
+   |                     ^^^^^^^^^^^^^^^^
+   |
+   = help: Replace `context` with `with_context` or replace the method call with an existing value. Context selectors will automatically call `Into::into` on the field expression as needed, so an explicit method call can often be avoided.
+
+error: Context selector field expressions should avoid method calls when used with `context` as the method calls will be invoked even when no error is created
+  --> $DIR/main.rs:119:15
+   |
+LL |         name: SimilarMethods.as_str(),
+   |               ^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: Replace `context` with `with_context` or replace the method call with an existing value. Context selectors will automatically call `Into::into` on the field expression as needed, so an explicit method call can often be avoided.
+
+error: Context selector field expressions should avoid function calls when used with `context` as the function calls will be invoked even when no error is created
+  --> $DIR/main.rs:123:15
+   |
+LL |         name: SimilarMethods::as_str(&SimilarMethods),
+   |               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = help: Replace `context` with `with_context` or replace the function call with an existing value. Context selectors will automatically call `Into::into` on the field expression as needed, so an explicit function call can often be avoided.
+
+error: Context selector field expressions should avoid function calls when used with `context` as the function calls will be invoked even when no error is created
+  --> $DIR/main.rs:141:46
+   |
+LL |     let _ = o().context(MissingSnafu { name: make_name() });
+   |                                              ^^^^^^^^^^^
+   |
+   = help: Replace `context` with `with_context` or replace the function call with an existing value. Context selectors will automatically call `Into::into` on the field expression as needed, so an explicit function call can often be avoided.
+
+error: Context selector field expressions should avoid function calls when used with `context` as the function calls will be invoked even when no error is created
+  --> $DIR/main.rs:147:40
+   |
+LL |     let _ = ra().context(Snafu { name: make_name() });
+   |                                        ^^^^^^^^^^^
+   |
+   = help: Replace `context` with `with_context` or replace the function call with an existing value. Context selectors will automatically call `Into::into` on the field expression as needed, so an explicit function call can often be avoided.
+
+error: Context selector field expressions should avoid function calls when used with `context` as the function calls will be invoked even when no error is created
+  --> $DIR/main.rs:149:63
+   |
+LL |     let _ = futures::stream::once(ra()).context(Snafu { name: make_name() });
+   |                                                               ^^^^^^^^^^^
+   |
+   = help: Replace `context` with `with_context` or replace the function call with an existing value. Context selectors will automatically call `Into::into` on the field expression as needed, so an explicit function call can often be avoided.
+
+error: aborting due to 9 previous errors
+

@@ -1,0 +1,26 @@
+[package]
+name = "snafu_context_fun_call"
+version = "0.1.0"
+authors = ["Jake Goulding <jake.goulding@gmail.com>"]
+edition = "2021"
+publish = false
+
+[lib]
+crate-type = ["cdylib"]
+
+[[example]]
+name = "main"
+path = "ui/main.rs"
+
+[dependencies]
+clippy_utils = { git = "https://github.com/rust-lang/rust-clippy", rev = "e43f5a17d4d9263616ae6fc28a7c5353e80d8a12" }
+dylint_linting = "2.1.0"
+serde = { version = "1.0.147", features = ["derive"] }
+
+[dev-dependencies]
+dylint_testing = "2.1.0"
+snafu = { version = "0.7", features = ["futures"] }
+futures = "0.3"
+
+[package.metadata.rust-analyzer]
+rustc_private = true
